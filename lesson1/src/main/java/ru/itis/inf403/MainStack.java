@@ -4,7 +4,7 @@ import java.util.Stack;
 
 public class MainStack {
     public static void main(String[] args) {
-        String s1 = "(())";
+        String s1 = "({[}])";
         System.out.println(check(s1));
     }
 
@@ -22,19 +22,19 @@ public class MainStack {
                 a.push(str.charAt(i));
             } else {
                 if (a.peek() == '{' && str.charAt(i)!='}') {
-                    if (str.charAt(i) == '(' || str.charAt(i) == '[') {
+                    if (str.charAt(i) == '(' || str.charAt(i) == '[' || str.charAt(i) == '{') {
                         a.push(str.charAt(i));
                     } else {
                         return false;
                     }
                 } else if (a.peek() == '(' && str.charAt(i)!=')') {
-                        if (str.charAt(i) == '[' || str.charAt(i) == '{') {
+                        if (str.charAt(i) == '[' || str.charAt(i) == '{' || str.charAt(i) == '(') {
                             a.push(str.charAt(i));
                         } else {
                             return false;
                         }
                 } else if (a.peek() == '[' && str.charAt(i)!=']') {
-                        if (str.charAt(i) == '(' || str.charAt(i) == '{') {
+                        if (str.charAt(i) == '(' || str.charAt(i) == '{' || str.charAt(i) == '[') {
                             a.push(str.charAt(i));
                         } else {
                             return false;
@@ -44,6 +44,10 @@ public class MainStack {
                 }
             }
         }
-        return true;
+        if (a.isEmpty()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
