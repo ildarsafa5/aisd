@@ -28,24 +28,23 @@ public class Stack<T> {
             last = news;
         }
     }
+    public boolean isEmpty() {
+        return first==null;
+    }
 
 
     public T pop() {
-        Node<T> current = first;
-        while (current.next != null) {
-            current = current.next;
+        if (first == null) {
+            return null;
         }
-        current.prev.next = null;
-        last = current.prev.next;
-        return current.value;
+        T cur = last.value;
+        last.prev.next = null;
+        last = last.prev;
+        return cur;
     }
 
     public T peek() {
-        Node<T> current = first;
-        while (current.next != null) {
-            current = current.next;
-        }
-        return current.value;
+        return last.value;
     }
 
     public String toString() {
